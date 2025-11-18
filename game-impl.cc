@@ -5,12 +5,14 @@ import <iostream>;
 import <sstream>;
 import player;
 
+using namespace std
+
 Game::Game() : p1_{nullptr}, p2_{nullptr}, current_{nullptr} {}
 Game::~Game() {}
 
 void Game::start() {
-    p1_ = std::make_unique<Player>("Player1");
-    p2_ = std::make_unique<Player>("Player2");
+    p1_ = make_unique<Player>("Player1");
+    p2_ = make_unique<Player>("Player2");
     current_ = p1_.get();
 }
 
@@ -29,19 +31,19 @@ Player &Game::getOtherPlayer() { return current_ == p1_.get() ? *p2_ : *p1_; }
 void Game::run() {
     if (!p1_ || !p2_) start();
 
-    std::string line;
+    string line;
 
     while (true) {
-        std::cout << "=== " << p1_->getName() << " ===\n"
+        cout << "=== " << p1_->getName() << " ===\n"
                   << p1_->getBoard().toString();
-        std::cout << "=== " << p2_->getName() << " ===\n"
+        cout << "=== " << p2_->getName() << " ===\n"
                   << p2_->getBoard().toString();
 
-        std::cout << current_->getName() << " > ";
-        if (!std::getline(std::cin, line)) break;
+        cout << current_->getName() << " > ";
+        if (!getline(cin, line)) break;
 
-        std::istringstream iss(line);
-        std::string cmd;
+        istringstream iss(line);
+        string cmd;
         iss >> cmd;
         if (cmd.empty()) continue;
 
@@ -50,11 +52,11 @@ void Game::run() {
         if (turnEnded) switchTurn();
 
         if (p1_->getBoard().isGameOver()) {
-            std::cout << "Player1 has lost.\n";
+            cout << "Player1 has lost.\n";
             break;
         }
         if (p2_->getBoard().isGameOver()) {
-            std::cout << "Player2 has lost.\n";
+            cout << "Player2 has lost.\n";
             break;
         }
     }
