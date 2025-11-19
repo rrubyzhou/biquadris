@@ -14,12 +14,12 @@ const vector<pair<int,int>>& Block::getCells() const {
 
 // coordinate updaters
 
-// Replace the block's (r,c) coordinates
+// replace the block's (r,c) coordinates
 void Block::setCells(const vector<pair<int,int>>& cs) {
     cells_ = cs;
 }
 
-// Add an (r,c) coordinate
+// add an (r,c) coordinate
 void Block::addCell(int r, int c) {
     cells_.emplace_back(r, c);
 }

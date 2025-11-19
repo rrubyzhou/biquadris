@@ -69,6 +69,9 @@ public:
     // Rotate 90 degrees clockwise
     bool rotateCW();
 
+    // Rotate 90 degrees counter-clockwise
+    bool rotateCCW();
+
     // Drop block to bottom; return number of cleared lines
     int drop();
 

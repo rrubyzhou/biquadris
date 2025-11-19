@@ -6,7 +6,7 @@ import <memory>;
 import board;
 import level;
 
-using namespace std
+using namespace std;
 
 export class Player {
     string name_;
@@ -18,7 +18,7 @@ export class Player {
     int hiScore_;
 
 public:
-    Player(const string &name, int rows = 18, int cols = 11);
+    Player(const string &name);
     ~Player();
 
     Board &getBoard();

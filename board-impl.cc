@@ -200,6 +200,52 @@ bool Board::rotateCW() {
     return true;
 }
 
+bool Board::rotateCCW() {
+    if (!currentBlock_) return false;
+
+    auto old = currentBlock_->getCells();
+    removeBlockFromGrid(*currentBlock_);
+
+    // Find bounding box of the block
+    int minR = 999, maxR = -1, minC = 999, maxC = -1;
+    for (auto &p : old) {
+        minR = min(minR, p.first);
+        maxR = max(maxR, p.first);
+        minC = min(minC, p.second);
+        maxC = max(maxC, p.second);
+    }
+
+    int width = maxC - minC + 1;
+
+    vector<pair<int,int>> rotated;
+    for (auto &p : old) {
+        int r = p.first;
+        int c = p.second;
+
+        // local coords inside bounding box
+        int lr = r - minR;
+        int lc = c - minC;
+
+        // rotated coords (CCW is reverse of CW)
+        int nr = minR + lc;
+        int nc = maxC - lr;
+
+        rotated.emplace_back(nr, nc);
+    }
+
+    currentBlock_->setCells(rotated);
+
+    // Illegal rotation, revert
+    if (!canPlace(*currentBlock_)) {
+        currentBlock_->setCells(old);
+        placeBlockOnGrid(*currentBlock_);
+        return false;
+    }
+
+    placeBlockOnGrid(*currentBlock_);
+    return true;
+}
+
 // drop + line clearing
 
 // Drop block until it cannot move down

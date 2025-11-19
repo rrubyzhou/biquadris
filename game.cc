@@ -5,7 +5,7 @@ import <memory>;
 import <string>;
 import player;
 
-using namespace std
+using namespace std;
 
 export class Game {
     unique_ptr<Player> p1_;

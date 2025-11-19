@@ -12,13 +12,13 @@ char Cell::getType() const { return type_; }
 
 // mutators
 
-// Mark the cell as occupied with block type t
+// mark the cell as occupied with block type t
 void Cell::set(char t) {
     occupied_ = true;
     type_ = t;
 }
 
-// Clear the cell (make empty)
+// clear the cell (make empty)
 void Cell::clear() {
     occupied_ = false;
     type_ = ' ';

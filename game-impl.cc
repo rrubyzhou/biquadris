@@ -5,7 +5,7 @@ import <iostream>;
 import <sstream>;
 import player;
 
-using namespace std
+using namespace std;
 
 Game::Game() : p1_{nullptr}, p2_{nullptr}, current_{nullptr} {}
 Game::~Game() {}
